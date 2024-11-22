@@ -3,6 +3,7 @@
     "compilerOptions": {
         "baseUrl": ".",
         "paths": {
+          "tests": ["tests/*"],
           "@config/*": ["src/config/*"],
           "@assets/*": ["src/assets/*"],
           "@core/*": [ "src/core/*"],
@@ -10,5 +11,6 @@
           "@infrastructure/*": ["src/infrastructure/*" ],
           "@presentation/*": ["src/presentation/*"],
         },
+        "typeRoots": ["./types"],
       }
 }

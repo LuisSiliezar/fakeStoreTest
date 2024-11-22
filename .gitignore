@@ -75,3 +75,5 @@ yarn-error.log
 
 # IOS
 Podfile.lock
+
+.env
