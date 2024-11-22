@@ -1,43 +1,52 @@
 import { GenericLayout } from '@presentation/components/layouts/GenericLayout';
 import { CustomText } from '@presentation/components/shared/CustomText';
+import { useAuthStore } from '@presentation/store/auth/useAuthStore';
 import { ThemeContext } from '@react-navigation/native';
 import React, { useContext, useState } from 'react';
-import { Alert, StyleSheet, TextInput, View } from 'react-native';
+import { ActivityIndicator, Alert, StyleSheet, TextInput, View } from 'react-native';
 import { Button } from 'react-native-paper';
 
 export const LoginScreen = () => {
     const theme = useContext(ThemeContext);
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+    const [form, setForm] = useState({ username: '', password: '' });
     const [loading, setLoading] = useState(false);
+    const login = useAuthStore((state) => state.login);
 
-    // TODO: Delete this
-    const handleLogin = () => {
-        if (!email || !password) {
-            Alert.alert('Error', 'Please fill in both email and password');
-            return;
-        }
-
+    const handleLogin = async () => {
         setLoading(true);
+        try {
+            const response = await login(form.username, form.password);
 
-        // Simulate an API call
-        setTimeout(() => {
-            setLoading(false);
-            // In a real app, validate the email and password with an API
-            Alert.alert('Success', 'Login successful!');
-        }, 2000);
+            if (!response) {
+                Alert.alert('Login Failed', 'Please check your credentials and try again.');
+            }
+
+            Alert.alert('Login Successful', 'Welcome to the app!');
+
+        } catch (error) {
+            console.error(error);
+        }
+        setLoading(false);
     };
 
-    // TODO: Add validation for email and password
+
+    // TODO: Add validation for username and password
+    if (loading) {
+        return (
+            <View style={{ backgroundColor: theme?.colors.background, justifyContent: 'center', alignItems: 'center', flex: 1 }}>
+                <ActivityIndicator />
+            </View>
+        );
+    }
 
     return (
         <GenericLayout>
             <CustomText textType="title" title="Login" />
             <CustomText textType="subTitle" title="Please enter your credentials" />
             <TextInput
-                placeholder="Email"
-                value={email}
-                onChangeText={setEmail}
+                placeholder="Username"
+                value={form.username}
+                onChangeText={(username) => setForm({ ...form, username })}
                 style={[styles.input, { color: theme?.colors.text, borderColor: theme?.colors.text }]}
                 keyboardType="email-address"
                 autoCapitalize="none"
@@ -46,8 +55,8 @@ export const LoginScreen = () => {
 
             <TextInput
                 placeholder="Password"
-                value={password}
-                onChangeText={setPassword}
+                value={form.password}
+                onChangeText={(password) => setForm({ ...form, password })}
                 style={[styles.input, { color: theme?.colors.text, borderColor: theme?.colors.text }]}
                 secureTextEntry
             />

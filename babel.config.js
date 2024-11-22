@@ -15,6 +15,7 @@ module.exports = {
           '@domain': './src/domain',
           '@infrastructure': './src/infrastructure',
           '@presentation': './src/presentation',
+          '@actions': './src/actions',
         },
       },
     ],
