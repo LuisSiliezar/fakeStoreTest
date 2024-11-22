@@ -1,7 +1,9 @@
+import React from 'react';
 import { Formatter } from '@config/helpers/formatter';
 import { Product } from '@domain/entities';
-import React from 'react';
 import { Image, Pressable, StyleSheet, Text, useColorScheme, View } from 'react-native';
+import { type NavigationProp, useNavigation } from '@react-navigation/native';
+import { type RootStackParams } from '@presentation/navigator/StackNavigator';
 
 interface ProductCardProps {
     product: Product;
@@ -10,9 +12,12 @@ interface ProductCardProps {
 export const ProductCard = ({ product }: ProductCardProps) => {
     const colorScheme = useColorScheme();
     const isDark = colorScheme === 'dark';
+    const navigation = useNavigation<NavigationProp<RootStackParams>>();
 
     return (
-        <Pressable style={[styles.card, { backgroundColor: isDark ? '#2d2d2d' : 'white', shadowColor: isDark ? 'white' : '#ccc' }]}>
+        <Pressable style={[styles.card, { backgroundColor: isDark ? '#2d2d2d' : 'white', shadowColor: isDark ? 'white' : '#ccc' }]}
+            onPress={() => navigation.navigate('ProductDetailScreen', { productId: product.id })}
+        >
             <Image source={{ uri: product.image }} style={styles.image} />
             <View style={styles.textContainer}>
                 <Text style={[styles.title, { color: isDark ? 'white' : 'black' }]}>{product.title}</Text>
