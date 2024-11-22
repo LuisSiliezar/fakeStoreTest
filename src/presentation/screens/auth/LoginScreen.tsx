@@ -11,7 +11,7 @@ export const LoginScreen = () => {
     const [password, setPassword] = useState('');
     const [loading, setLoading] = useState(false);
 
-// TODO: Delete this
+    // TODO: Delete this
     const handleLogin = () => {
         if (!email || !password) {
             Alert.alert('Error', 'Please fill in both email and password');
