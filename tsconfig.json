@@ -10,6 +10,7 @@
           "@domain/*": ["src/domain/*"],
           "@infrastructure/*": ["src/infrastructure/*" ],
           "@presentation/*": ["src/presentation/*"],
+          "@actions/*": ["src/actions/*"],
         },
         "typeRoots": ["./types"],
       }
