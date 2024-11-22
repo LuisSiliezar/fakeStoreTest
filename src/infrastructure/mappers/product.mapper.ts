@@ -1,8 +1,8 @@
-import { Products } from '@domain/entities';
+import { Product } from '@domain/entities';
 import { ProductsResponse } from '@infrastructure/interfaces';
 
 export class ProductMapper {
-    static fromDBProductsResultToLocalEntity(products: ProductsResponse): Products {
+    static fromDBProductsResultToLocalEntity(products: ProductsResponse): Product {
         return {
             id: products.id,
             title: products.title,
