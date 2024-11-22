@@ -1,5 +1,5 @@
 import { ProductsList } from '@presentation/components/home/ProductsList';
-import { useProducts } from '@presentation/hooks/useProducts';
+import { useProducts } from '@presentation/hooks';
 import { ThemeContext } from '@react-navigation/native';
 import React, { useContext } from 'react';
 import { View } from 'react-native';
