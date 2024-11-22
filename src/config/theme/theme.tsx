@@ -19,7 +19,7 @@ export const colors: ThemeColors = {
 export const lightColors: ThemeColors = {
     primary: '#004494',
     text: 'black',
-    background: '#F3F2F7',
+    background: '#e6ecff',
     cardBackground: 'white',
     buttonTextColor: 'white',
 };
@@ -27,7 +27,7 @@ export const lightColors: ThemeColors = {
 export const darkColors: ThemeColors = {
     primary: '#5856D6',
     text: 'white',
-    background: '#090909',
+    background: '#11122c',
     cardBackground: '#2d2d2d',
     buttonTextColor: 'white',
 };

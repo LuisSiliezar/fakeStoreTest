@@ -1,11 +1,11 @@
 import React from 'react';
 import { FlatList } from 'react-native-gesture-handler';
-import { CustomText } from '../shared/CustomText';
 import { View } from 'react-native';
-import { Products } from '@domain/entities';
+import { Product } from '@domain/entities';
+import { ProductCard } from './ProductCard';
 
 interface ProductsListProps {
-    products: Products[];
+    products: Product[];
 }
 
 
@@ -14,7 +14,7 @@ export const ProductsList = ({ products }: ProductsListProps) => {
         <View>
             <FlatList
                 data={products}
-                renderItem={({ item }) => <CustomText textType="title" title={item.title} />}
+                renderItem={({ item }) => <ProductCard product={item} />}
                 keyExtractor={(item, index) => `${index} - ${item}`}
             />
         </View>
