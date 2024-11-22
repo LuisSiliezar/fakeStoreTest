@@ -3,7 +3,7 @@ import { CustomText } from '@presentation/components/shared/CustomText';
 import { useAuthStore } from '@presentation/store/auth/useAuthStore';
 import { ThemeContext } from '@react-navigation/native';
 import React, { useContext, useState } from 'react';
-import { ActivityIndicator, Alert, StyleSheet, TextInput, View } from 'react-native';
+import { Alert, StyleSheet, TextInput, View } from 'react-native';
 import { Button } from 'react-native-paper';
 
 export const LoginScreen = () => {
@@ -29,15 +29,6 @@ export const LoginScreen = () => {
         setLoading(false);
     };
 
-
-    // TODO: Add validation for username and password
-    if (loading) {
-        return (
-            <View style={{ backgroundColor: theme?.colors.background, justifyContent: 'center', alignItems: 'center', flex: 1 }}>
-                <ActivityIndicator />
-            </View>
-        );
-    }
 
     return (
         <GenericLayout>

@@ -16,15 +16,13 @@ const Stack = createStackNavigator<RootStackParams>();
 
 export const StackNavigator = () => {
     return (
-        <Stack.Navigator initialRouteName="LoginScreen">
+        <Stack.Navigator initialRouteName="LoadingScreen">
             <Stack.Screen name="LoginScreen" component={LoginScreen}
                 options={{ headerShown: false }}
             />
             <Stack.Screen name="HomeScreen" component={HomeScreen} />
             <Stack.Screen name="LoadingScreen" component={LoadingScreen} />
-            <Stack.Screen name="ProductDetailScreen" component={ProductDetailScreen}
-                options={{}}
-            />
+            <Stack.Screen name="ProductDetailScreen" component={ProductDetailScreen} />
         </Stack.Navigator>
     );
 };
