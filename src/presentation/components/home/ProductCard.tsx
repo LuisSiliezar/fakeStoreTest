@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { Formatter } from '@config/helpers/formatter';
-import { Product } from '@domain/entities';
 import { Image, Pressable, StyleSheet, Text, View } from 'react-native';
+import { Product } from '@domain/entities';
 import { type NavigationProp, ThemeContext, useNavigation } from '@react-navigation/native';
 import { type RootStackParams } from '@presentation/navigator/StackNavigator';
 

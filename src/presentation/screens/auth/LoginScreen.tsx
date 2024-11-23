@@ -1,3 +1,5 @@
+import { userDbfetcher } from '@config/adapters/http';
+import { userByIdUseCases } from '@core/use-cases/users';
 import { GenericLayout } from '@presentation/components/layouts/GenericLayout';
 import { CustomText } from '@presentation/components/shared/CustomText';
 import { useAuthStore } from '@presentation/store/auth/useAuthStore';
@@ -11,20 +13,26 @@ export const LoginScreen = () => {
     const [form, setForm] = useState({ username: '', password: '' });
     const [loading, setLoading] = useState(false);
     const login = useAuthStore((state) => state.login);
+    const storeUser = useAuthStore((state) => state.storeUser);
 
     const handleLogin = async () => {
         setLoading(true);
         try {
             const response = await login(form.username, form.password);
+            const userData = await userByIdUseCases(userDbfetcher);
 
-            if (!response) {
+            if (!response || !userData) {
                 Alert.alert('Login Failed', 'Please check your credentials and try again.');
             }
 
-            Alert.alert('Login Successful', 'Welcome to the app!');
+            storeUser(userData);
+        } catch (error: any) {
 
-        } catch (error) {
-            console.error(error);
+            if (error!.response?.status === 401) {
+                Alert.alert('Login Failed', 'Please check your credentials and try again.');
+            }
+
+            Alert.alert('Login Failed', 'Please check your credentials and try again.');
         }
         setLoading(false);
     };
