@@ -1,7 +1,7 @@
 import { HttpAdapter } from '@config/adapters/http/http-adapter';
 import { Product } from '@domain/entities/products.entity';
-import { ProductMapper } from '@infrastructure/mappers/product.mapper';
-import type { ProductsResponse } from '@infrastructure/interfaces/products-db.responses';
+import { ProductMapper } from '@infrastructure/mappers';
+import type { ProductsResponse } from '@infrastructure/interfaces';
 
 export const productsUseCases = async (fetcher: HttpAdapter): Promise<Product[]> => {
     try {

@@ -1,9 +1,9 @@
-import { ProductsList } from '@presentation/components/home/ProductsList';
-import { useProducts } from '@presentation/hooks';
-import { ThemeContext } from '@react-navigation/native';
 import React, { useContext, useMemo, useState } from 'react';
+import { ProductsList } from '@presentation/components/home/ProductsList';
 import { StyleSheet, View } from 'react-native';
 import { Text, TextInput } from 'react-native-paper';
+import { ThemeContext } from '@react-navigation/native';
+import { useProducts } from '@presentation/hooks';
 
 export const HomeScreen = () => {
     const theme = useContext(ThemeContext);
@@ -13,6 +13,7 @@ export const HomeScreen = () => {
     const filterProducts = useMemo(() => {
         return products.filter((product) => product.title.toLowerCase().includes(_searchValue.toLowerCase()));
     }, [products, _searchValue]);
+
 
     if (loading) {
         return (
