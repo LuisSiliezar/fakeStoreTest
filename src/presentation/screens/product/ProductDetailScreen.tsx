@@ -1,16 +1,14 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { useProductsById } from '@presentation/hooks';
 import { RootStackParams } from '@presentation/navigator/StackNavigator';
-import { useRoute, RouteProp } from '@react-navigation/native';
-import { Image, StyleSheet, Text, TouchableOpacity, useColorScheme, View } from 'react-native';
+import { useRoute, RouteProp, ThemeContext } from '@react-navigation/native';
+import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 export const ProductDetailScreen = () => {
     const route = useRoute<RouteProp<RootStackParams, 'ProductDetailScreen'>>();
     const { loading, product } = useProductsById(route.params.productId);
-    const colorScheme = useColorScheme();
-    const isDark = colorScheme === 'dark';
-
     const [isExpanded, setIsExpanded] = useState(false);
+    const theme = useContext(ThemeContext);
 
     const toggleExpand = () => {
         setIsExpanded(prevState => !prevState);
@@ -32,15 +30,15 @@ export const ProductDetailScreen = () => {
         <View>
             <Image source={{ uri: product?.image }} style={styles.image} />
             <View style={{ paddingVertical: 10 }}>
-                <Text style={[styles.title, { color: isDark ? 'white' : 'black' }]}>{product?.title}</Text>
-                <Text style={[styles.title, { color: isDark ? 'white' : 'black' }]}>{product?.category}</Text>
-                <Text style={[styles.description, { color: isDark ? 'white' : 'black' }]}>{displayedText}</Text>
+                <Text style={[styles.title, { color: theme?.dark ? 'white' : 'black' }]}>{product?.title}</Text>
+                <Text style={[styles.title, { color: theme?.dark ? 'white' : 'black' }]}>{product?.category}</Text>
+                <Text style={[styles.description, { color: theme?.dark ? 'white' : 'black' }]}>{displayedText}</Text>
                 <TouchableOpacity onPress={toggleExpand}>
                     <Text style={styles.toggleText}>
                         {isExpanded ? 'Read Less' : 'Read More'}
                     </Text>
                 </TouchableOpacity>
-                <Text style={[styles.description, { color: isDark ? 'white' : 'black' }]}>{product?.rating_value}</Text>
+                <Text style={[styles.description, { color: theme?.dark ? 'white' : 'black' }]}>{product?.rating_value}</Text>
             </View>
         </View>
     );

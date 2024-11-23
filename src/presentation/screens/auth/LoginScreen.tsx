@@ -75,6 +75,7 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         textAlign: 'center',
     },
+    // TODO: add this to global styles
     input: {
         marginTop: 16,
         height: 40,
