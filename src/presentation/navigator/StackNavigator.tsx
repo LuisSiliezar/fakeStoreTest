@@ -20,7 +20,7 @@ export const StackNavigator = () => {
             <Stack.Screen name="LoadingScreen" component={LoadingScreen} />
             <Stack.Screen name="LoginScreen" component={LoginScreen} />
             <Stack.Screen name="HomeDrawer" component={HomeDrawerNavigator} />
-            <Stack.Screen name="ProductDetailScreen" component={ProductDetailScreen} options={{ headerShown: true, headerTitle: '' }} />
+            <Stack.Screen name="ProductDetailScreen" component={ProductDetailScreen} />
         </Stack.Navigator>
     );
 };

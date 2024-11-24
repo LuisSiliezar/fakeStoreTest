@@ -30,8 +30,8 @@ export const useAuthStore = create<AuthState>()((set, _get) => ({
         return true;
     },
     logout: async () => {
-        await AsyncStorageAdapter.removeItem('token');
         set({ isLoggedIn: false, token: undefined, user: undefined });
+        await AsyncStorageAdapter.removeItem('token');
     },
     storeUser: async (user: User) => {
         set({ user: user });
