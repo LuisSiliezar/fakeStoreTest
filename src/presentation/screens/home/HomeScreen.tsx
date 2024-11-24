@@ -1,10 +1,10 @@
 import React, { useContext, useMemo, useState } from 'react';
 import { ProductsList } from '@presentation/components/home/ProductsList';
 import { StyleSheet, TextInput, View } from 'react-native';
-import { Text } from 'react-native-paper';
 import { ThemeContext } from '@react-navigation/native';
 import { useProducts } from '@presentation/hooks';
 import { NoResultsFound } from '@presentation/components/shared/NoResultsFound';
+import { Loader } from '@presentation/components/shared/Loader';
 
 export const HomeScreen = () => {
     const theme = useContext(ThemeContext);
@@ -20,10 +20,7 @@ export const HomeScreen = () => {
 
     if (loading) {
         return (
-            <View
-                style={{ backgroundColor: theme?.colors.background }}>
-                <Text style={{ color: theme?.colors.text }}>Loading...</Text>
-            </View >
+            <Loader />
         );
     }
 

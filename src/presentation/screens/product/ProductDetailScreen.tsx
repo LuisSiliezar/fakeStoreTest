@@ -4,6 +4,7 @@ import { RootStackParams } from '@presentation/navigator/StackNavigator';
 import { useRoute, RouteProp, ThemeContext, useNavigation } from '@react-navigation/native';
 import { Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { Category } from '@presentation/components/shared/Category';
+import { Loader } from '@presentation/components/shared/Loader';
 
 export const ProductDetailScreen = () => {
     const route = useRoute<RouteProp<RootStackParams, 'ProductDetailScreen'>>();
@@ -35,9 +36,7 @@ export const ProductDetailScreen = () => {
 
     if (loading) {
         return (
-            <View>
-                <Text>Loading...</Text>
-            </View>
+            <Loader />
         );
     }
 
