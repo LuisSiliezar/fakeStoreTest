@@ -15,28 +15,55 @@ export const LoginScreen = () => {
     const login = useAuthStore((state) => state.login);
     const storeUser = useAuthStore((state) => state.storeUser);
 
+    const isFormInvalid = () => {
+        return form.username === '' || form.password === '';
+    };
+
+    const showAlert = (title: string, message: string) => {
+        Alert.alert(title, message);
+    };
+
+    const getUserData = async () => {
+        try {
+            return await userByIdUseCases(userDbfetcher);
+        } catch (error) {
+            console.error('Failed to fetch user data:', error);
+            return null;
+        }
+    };
+
+    const handleLoginError = (error: any) => {
+        if (error.toString().includes('401')) {
+            showAlert('Login Failed', 'Please check your credentials and try again.');
+        } else {
+            showAlert('API Failed', 'Please try again later.');
+        }
+    };
+
     const handleLogin = async () => {
         setLoading(true);
+
         try {
+            if (isFormInvalid()) {
+                showAlert('Invalid Credentials', 'Please enter your credentials.');
+                return;
+            }
+
             const response = await login(form.username, form.password);
-            const userData = await userByIdUseCases(userDbfetcher);
+            const userData = await getUserData();
 
             if (!response || !userData) {
-                Alert.alert('Login Failed', 'Please check your credentials and try again.');
+                showAlert('Login Failed', 'Please check your credentials and try again.');
+                return;
             }
 
             storeUser(userData);
         } catch (error: any) {
-
-            if (error!.response?.status === 401) {
-                Alert.alert('Login Failed', 'Please check your credentials and try again.');
-            }
-
-            Alert.alert('Login Failed', 'Please check your credentials and try again.');
+            handleLoginError(error);
+        } finally {
+            setLoading(false);
         }
-        setLoading(false);
     };
-
 
     return (
         <GenericLayout>
@@ -83,7 +110,7 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         textAlign: 'center',
     },
-    // TODO: add this to global styles
+
     input: {
         marginTop: 16,
         height: 40,

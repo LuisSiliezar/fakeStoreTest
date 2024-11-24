@@ -1,5 +1,5 @@
-import { useAuthStore } from '@presentation/store/auth';
 import React from 'react';
+import { useAuthStore } from '@presentation/store/auth';
 import { Pressable, Text, View } from 'react-native';
 
 export const ProfileScreen = () => {
