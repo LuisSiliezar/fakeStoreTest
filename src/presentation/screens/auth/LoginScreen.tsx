@@ -1,12 +1,12 @@
-import { userDbfetcher } from '@config/adapters/http';
-import { userByIdUseCases } from '@core/use-cases/users';
-import { GenericLayout } from '@presentation/components/layouts/GenericLayout';
-import { CustomText } from '@presentation/components/shared/CustomText';
-import { useAuthStore } from '@presentation/store/auth/useAuthStore';
-import { ThemeContext } from '@react-navigation/native';
 import React, { useContext, useState } from 'react';
 import { Alert, StyleSheet, TextInput, View } from 'react-native';
 import { Button } from 'react-native-paper';
+import { CustomText } from '@presentation/components/shared/CustomText';
+import { GenericLayout } from '@presentation/components/layouts/GenericLayout';
+import { ThemeContext } from '@react-navigation/native';
+import { useAuthStore } from '@presentation/store/auth/useAuthStore';
+import { userByIdUseCases } from '@core/use-cases/users';
+import { userDbfetcher } from '@config/adapters/http';
 
 export const LoginScreen = () => {
     const theme = useContext(ThemeContext);
