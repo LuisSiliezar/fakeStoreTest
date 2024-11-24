@@ -1,4 +1,5 @@
 import React from 'react';
+import BootSplash from 'react-native-bootsplash';
 import { PropsWithChildren, createContext, useEffect, useState } from 'react';
 import { ThemeColors, darkColors, lightColors } from '@config/theme/theme';
 import { useColorScheme } from 'react-native';
@@ -39,7 +40,7 @@ export const ThemeContextProvider = ({ children }: PropsWithChildren) => {
 
   return (
     <PaperProvider theme={isDark ? MD3LightTheme : MD3DarkTheme}>
-      <NavigationContainer theme={isDark ? DarkTheme : DefaultTheme}>
+      <NavigationContainer theme={isDark ? DarkTheme : DefaultTheme} onReady={() => BootSplash.hide({ fade: true })}>
         <ThemeContext.Provider
           value={{
             currentTheme: currentTheme,
