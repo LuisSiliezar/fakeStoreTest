@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { useAuthStore } from '@presentation/store/auth';
-import { ActivityIndicator, ScrollView, StyleSheet, View } from 'react-native';
+import { ScrollView, StyleSheet, View } from 'react-native';
 import { Button } from 'react-native-paper';
 import { CustomText } from '@presentation/components/shared/CustomText';
+import { Loader } from '@presentation/components/shared/Loader';
 
 export const ProfileScreen = () => {
     const user = useAuthStore((state) => state.user);
@@ -19,12 +20,9 @@ export const ProfileScreen = () => {
         setLoading(false);
     };
 
-    // TODO: Check data here and add skeleton loaders
     if (loading) {
         return (
-            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-                <ActivityIndicator size="large" color="rgb(220, 184, 255)" />
-            </View>
+            <Loader />
         );
     }
 
